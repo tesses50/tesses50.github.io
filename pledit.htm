@@ -1,0 +1,81 @@
+<HTML>
+	<HEAD>
+		<script>
+			var filecon='';
+			function download(filename,text){
+			var element = document.createElement('a');
+			element.setAttribute('href','data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+			element.setAttribute('download',filename);
+			element.style.display = 'none';
+			document.body.appendChild(element);
+			element.click();
+			document.body.removeChild(element);
+			
+			}
+			function addinfo(urldata,name,type){
+			var sp = name.split('.');
+			var tof = '';
+			if(type != 'pl' && type != 'tn'){
+					tof = type + ' ' + urldata + ' ' + sp[0];
+			
+			}else if(type == 'tn'){
+				tof = type + ' ' + urldata + ' NONEED';
+			}else{
+			if(sp.length < 2){
+				tof = type + ' ' + urldata + ' ' + sp[0] + '(%s)';
+			}else{
+				tof = type + ' ' + urldata + ' ' + sp[0] + '(%s).' + sp[1];
+			
+			}
+			}
+			
+			filecon += tof + '\n';
+			}
+			function yturl(url){
+    var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+
+    url = (decodeURIComponent(url));
+    return (url.match(p)) ? RegExp.$1 : false ;
+    
+}
+function plurl(url){
+ var p = new RegExp('youtube\..+?/playlist.*?list=(.*?)(?:&|/|$)|youtube\..+?/watch.*?list=(.*?)(?:&|/|$)|youtu\.be/.*?/.*?list=(.*?)(?:&|/|$)|youtube\..+?/embed/.*?/.*?list=(.*?)(?:&|/|$)');
+
+    url = (decodeURIComponent(url));
+    return (url.match(p)) ? RegExp.$1 : false ;
+    
+}
+			function parseinfo(){
+				if(document.getElementById("vi").checked == true){
+					addinfo(yturl(document.getElementById("urldata").value),document.getElementById("filenames").value,'vi');
+				}
+				if(document.getElementById("pl").checked == true){
+					addinfo(plurl(document.getElementById("urldata").value),document.getElementById("filenames").value,'pl');
+				}
+				if(document.getElementById("dl").checked == true){
+					addinfo(document.getElementById("urldata").value,document.getElementById("filenames").value,'dl');
+				}
+				if(document.getElementById("tn").checked == true){
+					addinfo(yturl(document.getElementById("urldata").value),document.getElementById("filenames").value,'tn');
+				}
+			}
+			function startdl(){
+				download(document.getElementById("downloadfn").value + '.txt',filecon.substring(0,filecon.length -1));
+			}
+		</script>
+	</HEAD>
+	<BODY>
+		<H1>Wii TYTD Playlist Editor</H1>
+		<form>
+			URL:<input type="text" id="urldata"><br>Filename:<input type="text" id="filenames"><input type="button" value="Add" onclick="parseinfo()"><br>
+			<input type="radio" name="type" id="vi" value="Video">Video
+			<input type="radio"  name="type" id="pl" value="Playlist">Playlist
+			<input type="radio" name="type" id="dl" value="Download">Download
+			<input type="radio" name="type" id="tn" value="Thumbnail">Thumbnail<br>
+			Output Filename:<input type="text" value="out" id="downloadfn">.txt<input type="button" value="Download" onclick="startdl()"><br>
+			
+			
+		</form>
+		
+	</BODY>
+</HTML>
