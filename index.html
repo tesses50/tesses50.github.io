@@ -1,10 +1,31 @@
+<HTML>
+<HEAD><TITLE>Youtube Downloader</TITLE></HEAD>
+<script>
+function yturl(url){
+    var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
 
-<html>
+    url = (decodeURIComponent(url));
+    return (url.match(p)) ? RegExp.$1 : false ;
+    
+}
 
-<body>
 
-<H1>Test</H1>
 
-</body>
+</script>
+<BODY>
 
-</html>
+<noscript>Sorry,your browser does not support javascript or its turned off so the downloader wont work</noscript>
+
+	<H1 align="center">Youtube Downloader</H1>
+	<br><br><br><br>
+	<div align="center">
+			Youtube URL:<input type="text" id="url"><input type="submit" value="Download" onclick="window.location.href = 'https://stark-shelf-08981.herokuapp.com/Grabber/Video/' + yturl(document.getElementById('url').value)"></div>
+	<br><br><br>
+	<div align="center">This Site Needs Javascript To Work</div>
+	
+	<br><br><br>
+	<div align="center">Also For The Wii Using The Homebrew Channel <A HREF="wii.zip">Download Wii Version For Homebrew</A><br>also the server is heroku for api and api also uses YoutubeExplode by Alexey Golub(Tyrrrz) <A HREF="https://github.com/Tyrrrz/YoutubeExplode">Youtube Explode on Github</A></div>
+	
+
+</HTML>
+
