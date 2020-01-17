@@ -15,10 +15,10 @@
 			function addinfo(urldata,name,type){
 			var sp = name.split('.');
 			var tof = '';
-			if(type != 'pl' && type != 'tn'){
-					tof = type + ' ' + urldata + ' ' + sp[0];
+			if(!(type == 'pl' || type == 'tn') || document.getElementById("ignoretime").checked==true){
+					tof = type + ' ' + urldata + ' ' + name;
 			
-			}else if(type == 'tn'){
+			}else if(type == 'tn' || document.getElementById("ignoretime").checked==false){
 				tof = type + ' ' + urldata + ' NONEED';
 			}else{
 			if(sp.length < 2){
@@ -72,6 +72,8 @@ function plurl(url){
 			<input type="radio"  name="type" id="pl" value="Playlist">Playlist
 			<input type="radio" name="type" id="dl" value="Download">Download
 			<input type="radio" name="type" id="tn" value="Thumbnail">Thumbnail<br>
+			<input type="checkbox" name="type" id="ignoretime" value="Time">Add Time in downloader<br>
+			
 			Output Filename:<input type="text" value="out" id="downloadfn">.txt<input type="button" value="Download" onclick="startdl()"><br>
 			
 			
