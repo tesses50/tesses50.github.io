@@ -18,7 +18,8 @@
 			if((type == 'pl')  || (document.getElementById("ignoretime").checked==true)){
 					tof = type + ' ' + urldata + ' ' + name;
 			
-			}else if(type == 'tn'){
+			}else{
+			if(type == 'tn'){
 				tof = type + ' ' + urldata + ' NONEED';
 			}else{
 			if(sp.length < 2){
@@ -28,7 +29,7 @@
 			
 			}
 			}
-			
+			}
 			filecon += tof + '\n';
 			}
 			function yturl(url){
