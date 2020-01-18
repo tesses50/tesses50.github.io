@@ -15,7 +15,7 @@
 			function addinfo(urldata,name,type){
 			var sp = name.split('.');
 			var tof = '';
-			if((type == 'pl' && type != 'tn') || document.getElementById("ignoretime").checked==true){
+			if((type == 'pl' && type != 'tn') || (document.getElementById("ignoretime").checked==true)){
 					tof = type + ' ' + urldata + ' ' + name;
 			
 			}else if(type == 'tn' || document.getElementById("ignoretime").checked==false){
