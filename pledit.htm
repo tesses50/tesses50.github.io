@@ -15,10 +15,10 @@
 			function addinfo(urldata,name,type){
 			var sp = name.split('.');
 			var tof = '';
-			if((type == 'pl' && type != 'tn') || (document.getElementById("ignoretime").checked==true)){
+			if((type == 'pl')  || (document.getElementById("ignoretime").checked==true)){
 					tof = type + ' ' + urldata + ' ' + name;
 			
-			}else if(type == 'tn' || document.getElementById("ignoretime").checked==false){
+			}else if(type == 'tn'){
 				tof = type + ' ' + urldata + ' NONEED';
 			}else{
 			if(sp.length < 2){
