@@ -51,7 +51,7 @@ function plurl(url){
 }
 			function parseinfo(){
 				if(document.getElementById("vi").checked == true){
-					addinfo(yturl(document.getElementById("urldata").value),document.getElementById("filenames").value,'vi',false);
+					addinfo(yturl(document.getElementById("urldata").value),document.getElementById("filenames").value,'vi',document.getElementById("HD").checked);
 				}
 				if(document.getElementById("pl").checked == true){
 					addinfo(plurl(document.getElementById("urldata").value),document.getElementById("filenames").value,'pl',false);
