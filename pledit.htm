@@ -13,8 +13,8 @@
 			
 			}
 			function addinfo(urldata,name,type,hd){
-				const regex2 = '\s/gi';
-			var sp = name.replace(regex2,'*').split('.');
+				
+			var sp = name.replace(/\s/g,'*').split('.');
 			var tof = '';
 			if(type !='tn' && ((type != 'dl')  || (document.getElementById("ignoretime").checked==true))){
 					tof = type + ' ' + urldata + ' ' + name;
