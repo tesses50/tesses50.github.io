@@ -12,9 +12,9 @@
 			document.body.removeChild(element);
 			
 			}
-			function addinfo(urldata,name,type,hd){
-				
-			var sp = name.replace(/\s/g,'*').split('.');
+			function addinfo(urldata,name2,type,hd){
+				var name =name2.replace(/\s/g,'*')
+			var sp = name.split('.');
 			var tof = '';
 			if(type !='tn' && ((type != 'dl')  || (document.getElementById("ignoretime").checked==true))){
 					tof = type + ' ' + urldata + ' ' + name;
