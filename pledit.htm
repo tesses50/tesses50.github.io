@@ -12,17 +12,20 @@
 			document.body.removeChild(element);
 			
 			}
-			function addinfo(urldata,name,type){
-			var sp = name.split('.');
+			function addinfo(urldata,name,type,hd){
+				const regex2 = '\s/gi';
+			var sp = name.replace(regex2,'*').split('.');
 			var tof = '';
-			if((type == 'pl')  || (document.getElementById("ignoretime").checked==true)){
+			if(type !='tn' && ((type != 'dl')  || (document.getElementById("ignoretime").checked==true))){
 					tof = type + ' ' + urldata + ' ' + name;
-			
+					if(type=='vi' && hd==true){
+						tof += '\nvo ' + urldata + ' ' + name;
+					}
 			}else{
 			if(type == 'tn'){
 				tof = type + ' ' + urldata + ' NONEED';
 			}else{
-			if(sp.length < 2){
+			if(sp.length < 2 && type=='dl'){
 				tof = type + ' ' + urldata + ' ' + sp[0] + '(%s)';
 			}else{
 				tof = type + ' ' + urldata + ' ' + sp[0] + '(%s).' + sp[1];
@@ -48,16 +51,16 @@ function plurl(url){
 }
 			function parseinfo(){
 				if(document.getElementById("vi").checked == true){
-					addinfo(yturl(document.getElementById("urldata").value),document.getElementById("filenames").value,'vi');
+					addinfo(yturl(document.getElementById("urldata").value),document.getElementById("filenames").value,'vi',false);
 				}
 				if(document.getElementById("pl").checked == true){
-					addinfo(plurl(document.getElementById("urldata").value),document.getElementById("filenames").value,'pl');
+					addinfo(plurl(document.getElementById("urldata").value),document.getElementById("filenames").value,'pl',false);
 				}
 				if(document.getElementById("dl").checked == true){
-					addinfo(document.getElementById("urldata").value,document.getElementById("filenames").value,'dl');
+					addinfo(document.getElementById("urldata").value,document.getElementById("filenames").value,'dl',false);
 				}
 				if(document.getElementById("tn").checked == true){
-					addinfo(yturl(document.getElementById("urldata").value),document.getElementById("filenames").value,'tn');
+					addinfo(yturl(document.getElementById("urldata").value),document.getElementById("filenames").value,'tn',false);
 				}
 			}
 			function startdl(){
@@ -74,6 +77,7 @@ function plurl(url){
 			<input type="radio" name="type" id="dl" value="Download">Download
 			<input type="radio" name="type" id="tn" value="Thumbnail">Thumbnail<br>
 			<input type="checkbox" name="type" id="ignoretime" value="Time">Ignore time in downloader<br>
+			<input type="checkbox" name="type" id="HD" value="DownloadHD">Download HD Video(Video and Audio Seprate)<br>
 			
 			Output Filename:<input type="text" value="out" id="downloadfn">.txt<input type="button" value="Download" onclick="startdl()"><br>
 			
