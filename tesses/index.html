@@ -1,10 +1,28 @@
 <html>
 	<head><title>Tesses Landing Page</title></head>
 	<body>
+		<script>
+			function setSite(){
+			 navigator.clipboard.writeText("https://bit.ly/3rKWYRL")
+            .then(() => {
+              alert('Text copied to clipboard');
+            })
+            .catch(err => {
+              alert('Error in copying text: ', err);
+            });}
+				function setLanding(){
+			 navigator.clipboard.writeText("https://bit.ly/3exXeA0")
+            .then(() => {
+              alert('Text copied to clipboard');
+            })
+            .catch(err => {
+              alert('Error in copying text: ', err);
+            });}
+		</script>
 		<h1>Tesses Landing Page</h1>
 		<a href="tesses.html">Goto My Website</a>
 		<br>
-		Share Landing Page: <code>https://bit.ly/3exXeA0</code><br>
-		Share Tesses Website: <code>https://bit.ly/3rKWYRL</code>
+		Share Landing Page: <code>https://bit.ly/3exXeA0</code><input type="button" value="Copy" onclick="setLanding()"><br>
+		Share Tesses Website: <code>https://bit.ly/3rKWYRL</code><input type="button" value="Copy" onclick="setSite()">
 	</body>
 </html>
